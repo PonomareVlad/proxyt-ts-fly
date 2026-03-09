@@ -6,7 +6,7 @@ COPY start.sh /app/start.sh
 RUN chmod +x /app/start.sh
 
 # Copy ProxyT binary from the official image on GHCR.
-COPY --from=ghcr.io/jaxxstorm/proxyt:latest /app/proxyt /app/proxyt
+COPY --from=ghcr.io/jaxxstorm/proxyt:latest /ko-app/proxyt /app/proxyt
 
 # Copy Tailscale binaries from the tailscale image on Docker Hub.
 COPY --from=docker.io/tailscale/tailscale:stable /usr/local/bin/tailscaled /app/tailscaled
