@@ -1,0 +1,17 @@
+app = 'proxyt-ts-fly'
+primary_region = 'fra'
+swap_size_mb = 256
+
+[[restart]]
+  policy = "always"
+
+[[vm]]
+  cpus = 1
+  memory_mb = 256
+  memory = '256mb'
+  cpu_kind = 'shared'
+  size = 'shared-cpu-1x'
+  persist_rootfs = "always"
+
+[deploy]
+  strategy = "immediate"
