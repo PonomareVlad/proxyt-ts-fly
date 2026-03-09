@@ -14,5 +14,6 @@ ip6tables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 /app/tailscale serve --bg 8080
 
 PROXYT_DOMAIN=${PROXYT_DOMAIN:-$(/app/tailscale status --json | grep -o '"DNSName":"[^"]*"' | head -1 | cut -d'"' -f4 | sed 's/\.$//')}
+PROXYT_DOMAIN=${PROXYT_DOMAIN:-${TAILSCALE_HOSTNAME:-proxyt}}
 
 exec /app/proxyt serve --http-only --port 8080 --domain "${PROXYT_DOMAIN}"
