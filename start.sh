@@ -11,7 +11,7 @@ ip6tables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 
 /app/tailscaled --state=/data/tailscale/tailscaled.state --socket=/var/run/tailscale/tailscaled.sock &
 /app/tailscale up --auth-key=${TAILSCALE_AUTHKEY} --hostname=${TAILSCALE_HOSTNAME:-proxyt} --advertise-exit-node --ssh
-/app/tailscale serve --bg 8080
+/app/tailscale funnel --bg 8080
 
 PROXYT_DOMAIN=${PROXYT_DOMAIN:-$(/app/tailscale status --json | grep -o '"DNSName":"[^"]*"' | head -1 | cut -d'"' -f4 | sed 's/\.$//')}
 PROXYT_DOMAIN=${PROXYT_DOMAIN:-${TAILSCALE_HOSTNAME:-proxyt}}

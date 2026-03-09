@@ -37,7 +37,7 @@ Once deployed, ProxyT will be available on your Tailnet at `https://proxyt` (if 
 ```
 Internet ──✕──▶ Fly VM (no public IP)
                   ├── tailscaled
-                  │     └── tailscale serve → 127.0.0.1:8080
+                  │     └── tailscale funnel → 127.0.0.1:8080
                   └── proxyt (127.0.0.1:8080, http-only)
                         └── state → /data/tailscale (RootFS)
 
@@ -45,7 +45,7 @@ Tailnet ──────▶ Fly VM ──▶ ProxyT
 ```
 
 - **ProxyT** runs in HTTP-only mode on `127.0.0.1:8080` — not reachable from the internet.
-- **Tailscale** connects the VM to your Tailnet, runs `tailscale serve` to proxy port 8080, and advertises the node as an exit node with SSH enabled.
+- **Tailscale** connects the VM to your Tailnet, runs `tailscale funnel` to proxy port 8080, and advertises the node as an exit node with SSH enabled.
 - **Fly.io** provides a shared-cpu-1x VM in `fra` with persistent RootFS for Tailscale state.
 
 ## Configuration
